@@ -5,7 +5,8 @@
 #include <QDebug>
 Pixel::Pixel(QQuickItem *parent): QQuickPaintedItem(parent)
 {
-
+ installEventFilter(this);
+ setAcceptedMouseButtons(Qt::AllButtons);
 }
 
 void Pixel::paint(QPainter *painter)

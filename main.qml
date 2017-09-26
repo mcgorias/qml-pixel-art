@@ -6,12 +6,13 @@ Window {
     width: 640
     height: 480
     title: qsTr("Hello World")
-
+    visibility: Window.FullScreen
     MainForm {
         anchors.fill: parent
-        mouseArea.onClicked: {
-            console.log(qsTr('Clicked on background.'))
-        }
+
+      //  mouseArea.onClicked: {
+      //      console.log(qsTr('Clicked on background.'))
+      //  }
 
     }
 }

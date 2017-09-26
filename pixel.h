@@ -14,8 +14,21 @@ public:
 
     bool isOn() const {return _IsOn;}
     void setOn(bool on){_IsOn = on;}
+
+    void mousePressEvent(QMouseEvent *event) {
+      QQuickItem::mousePressEvent(event);
+      event->accept();
+      QPointF pos = event->localPos();
+      qDebug() << "mousePressEvent" << pos.x() << pos.y();
+    }
+    void hoverMoveEvent(QHoverEvent* event) {
+            QQuickItem::hoverMoveEvent(event);
+            qDebug() << event->pos();
+        }
+
 signals:
     bool stateChanged();
+
 public slots:
 
 protected:

@@ -31,7 +31,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    PixelArtBoard.js
+    PixelArtBoard.js \
+    Pixel2.qml
 
 HEADERS += \
     pixel.h

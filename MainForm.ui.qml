@@ -1,5 +1,7 @@
 import QtQuick 2.6
+import QtQuick.Controls 1.4
 import "PixelArtBoard.js" as PixelArtBoard
+
 
 Rectangle {
     property alias mouseArea: mouseArea
@@ -19,7 +21,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 15
-
+        verticalItemAlignment: Grid.AlignVCenter
         TextEdit {
             id: sx
             text: qsTr("5")
@@ -37,19 +39,27 @@ Rectangle {
             width: 80
             onTextChanged: PixelArtBoard.updateGrid()
         }
+        Button {
+            id: clearbtn
+            text: "Clear"
+            onClicked: PixelArtBoard.cleanGrid()
+        }
 
     }
     Rectangle{
         border.width: 1
         border.color:"black"
-        y:50
-        x:5
         width: parent.height -50
         height: parent.height -50
+        y:50
+        x: (parent.parent.width - width)/2
         Grid{
             id: grid
             width: parent.height
             height:parent.height
         }
+        onWidthChanged: PixelArtBoard.updateGrid()
+        onHeightChanged: PixelArtBoard.updateGrid()
+
     }
 }

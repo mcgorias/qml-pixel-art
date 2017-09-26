@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
         <file>PixelArtBoard.js</file>
+        <file>Pixel2.qml</file>
     </qresource>
 </RCC>

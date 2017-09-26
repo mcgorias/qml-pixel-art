@@ -1,22 +1,47 @@
+function cleanGrid(){
+    for(var i = grid.children.length; i > 0 ; i--)
+    {
+        var item = grid.children[i-1];
+        item.changeState(false);
+    }
+}
 function updateGrid() {
+    var Pixel;
+    Pixel = Qt.createComponent("Pixel2.qml");
 
-    var x =sx.text;
-    var y =sx.text;
-
-    grid.columns=x;
-    grid.rows=y;
+    var x =Number(sx.text);
+    var y =Number(sx.text);
+    if(x>100)
+        return;
 
     var w = grid.width/grid.columns;
     var h = grid.height/grid.rows;
+
+
+    if(grid.columns==x && grid.rows == y)
+    {
+        for(var i = grid.children.length; i > 0 ; i--)
+        {
+            grid.children[i-1].width=w;
+            grid.children[i-1].height=h;
+        }
+        return;
+    }
+
     for(var i = grid.children.length; i > 0 ; i--) {
             grid.children[i-1].destroy()
     }
 
+    grid.columns=x;
+    grid.rows=y;
+
     for(var i=0;i<x;i++)
         for(var j=0;j<y;j++)
         {
-            var obj = Qt.createQmlObject("import Pixels 1; Pixel{width:"+w+";height:"+h+";}",grid,"pix"+(i*x+j));
+            var pix = Pixel.createObject(grid);
+            pix.width = w;
+            pix.height = h;
 
         }
-    console.log("updated");
+    console.log("updated "+w+" "+h);
 }
