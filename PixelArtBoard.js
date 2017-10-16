@@ -14,13 +14,13 @@ function updateGrid() {
     if(x>100)
         return;
 
-    var w = grid.width/grid.columns;
-    var h = grid.height/grid.rows;
+    var w = grid.width /x ;
+    var h = grid.height/y ;
 
 
     if(grid.columns==x && grid.rows == y)
     {
-        for(var i = grid.children.length; i > 0 ; i--)
+        for(var i  = grid.children.length; i > 0 ; i--)
         {
             grid.children[i-1].width=w;
             grid.children[i-1].height=h;
