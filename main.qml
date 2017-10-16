@@ -5,8 +5,8 @@ Window {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
-    visibility: Window.FullScreen
+    title: qsTr("Pixel Art Pictionary")
+   // visibility: Window.FullScreen
     MainForm {
         anchors.fill: parent
 
