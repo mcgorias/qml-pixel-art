@@ -3,6 +3,8 @@ import QtQuick.Controls 1.4
 import "PixelArtBoard.js" as PixelArtBoard
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.2
+import QtQml 2.2
+
 Rectangle {
     property alias mouseArea: mouseArea
     property alias sizeX: sx
@@ -18,7 +20,7 @@ Rectangle {
 
     Grid{
         id: menubar
-        columns: 2
+        columns: 3
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 15
@@ -26,7 +28,7 @@ Rectangle {
         height: 25
         TextEdit {
             id: sx
-            text: qsTr("5")
+            text: qsTr("25")
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: TextEdit.Center
             inputMethodHints: Qt.ImhDigitsOnly
@@ -43,36 +45,23 @@ Rectangle {
                 border.width: 1
             }
 
-            onTextChanged: PixelArtBoard.updateGrid()
+            onTextChanged: PixelArtBoard.updateGrid();
         }
-        Button {
-            id: clearbtn
-            height: parent.height
-            text: "Clear"
-            style: ButtonStyle {
-                label: Text {
-                        renderType: Text.NativeRendering
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: "Helvetica"
-                        color: "blue"
-                        text: control.text
-                        font.pixelSize: parent.height
-                        maximumLineCount: 1
+        MenuButton{
+            id: timerBtn
+            Timer {
+                property var timeToPlay: 60;
 
-                 }
-                 background: Rectangle {
-                        implicitWidth: 100
-                        border.width: control.activeFocus ? 2 : 1
-                        border.color: "#888"
-                        radius: 4
-                        gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
-                            GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
-                        }
-                    }
+                interval: 1000;
+                running: true ;
+                repeat: true
+                onTriggered: timerBtn.text = timeToPlay--;
                 }
-            onClicked: PixelArtBoard.cleanGrid()
+        }
+        MenuButton {
+            id: clearbtn
+            text: "Clear"
+            onClicked: PixelArtBoard.cleanGrid();
         }
 
     }

@@ -33,7 +33,8 @@ else: unix:!android: target.path = /home/pi/apps
 
 DISTFILES += \
     PixelArtBoard.js \
-    Pixel2.qml
+    Pixel2.qml \
+    MenuButton.qml
 
 HEADERS += \
     pixel.h
